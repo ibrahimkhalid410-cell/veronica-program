@@ -6,7 +6,7 @@
 <meta name="theme-color" content="#0B0A0F">
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-<title>Veronica · Fight Camp</title>
+<title>Veronika · Fight Camp</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Oswald:wght@500;600;700&display=swap" rel="stylesheet">
@@ -134,13 +134,52 @@ details.fold[open]>summary::after{transform:rotate(-135deg)}
 .weekbar i.done{background:var(--heroAccent)}
 .weekbar i.now{background:#fff;box-shadow:0 0 0 2px rgba(165,123,255,.6)}
 .weekbar i.fn{outline:1px solid rgba(240,194,79,.75);outline-offset:1px}
-.ringhero{padding:18px 14px 16px}
-.ringhero .kicker{margin-bottom:4px}
+.ringhero{padding:18px 12px 16px;background:radial-gradient(120% 75% at 50% 58%,#3a0e14 0%,#1a0a0d 42%,#070607 100%)}
+.ringhero::before{background:radial-gradient(closest-side,rgba(255,255,255,.08),transparent 70%)}
+.ringhero::after{display:none}
+.ringhero .kicker{margin-bottom:2px;color:#E6E6EA;letter-spacing:.22em}
+.ringhero .kicker::before,.ringhero .kicker::after{content:"";display:inline-block;width:18px;height:2px;background:#E01E2B;vertical-align:middle;margin:0 8px 2px}
 .arena{display:block;width:calc(100% + 12px);margin:0 -6px;height:auto;overflow:visible}
-.arena .flashdot{fill:#fff;opacity:0;animation:camflash 6s infinite}
-@keyframes camflash{0%,90%,100%{opacity:0}92%{opacity:1}95%{opacity:.2}}
-.arena .beam{transform-origin:50% 0;animation:beam 7s ease-in-out infinite alternate}
-@keyframes beam{from{transform:skewX(-6deg);opacity:.8}to{transform:skewX(6deg);opacity:1}}
+.arena .beam{transform-box:view-box;transform-origin:50% 0;animation:beam 7s ease-in-out infinite alternate}
+.arena .bm1{animation-duration:8.5s;animation-direction:alternate-reverse}
+.arena .bm2{animation-duration:10s}
+@keyframes beam{from{transform:skewX(-3deg);opacity:.75}to{transform:skewX(3deg);opacity:1}}
+.arena .lampglow{animation:lamp 3s ease-in-out infinite alternate}
+@keyframes lamp{from{opacity:.2}to{opacity:.55}}
+.arena .tierdot{opacity:.35;animation:tw 4s ease-in-out infinite}
+@keyframes tw{50%{opacity:.9}}
+.arena .ticker{animation:tick 26s linear infinite}
+@keyframes tick{to{transform:translateX(-50%)}}
+.arena .pflash{opacity:0;transform-box:fill-box;transform-origin:center;animation:pf 6s infinite}
+@keyframes pf{0%,88%,100%{opacity:0;transform:scale(.3)}90%{opacity:1;transform:scale(1.3)}94%{opacity:.15;transform:scale(1)}}
+.arena .bflash{opacity:0;transform-box:fill-box;transform-origin:center;animation:pf1 .5s ease-out both}
+@keyframes pf1{0%{opacity:0;transform:scale(.2)}25%{opacity:1;transform:scale(1.4)}100%{opacity:0;transform:scale(1)}}
+.arena .ltr,.arena .beltdrop,.arena .beltfloat,.arena .frontropes,.arena .glint{transform-box:fill-box;transform-origin:center}
+.arena .beltfloat{animation:bfloat 3.6s ease-in-out infinite alternate}
+@keyframes bfloat{from{transform:translateY(-2.5px)}to{transform:translateY(2.5px)}}
+.arena .shine{animation:shine 4.2s ease-in-out infinite}
+@keyframes shine{0%{transform:skewX(-18deg) translateX(-30px)}55%,100%{transform:skewX(-18deg) translateX(150px)}}
+.arena .glint{transform:scale(0);animation:glint 3.4s ease-in-out infinite}
+@keyframes glint{0%,70%,100%{transform:scale(0) rotate(0)}80%{transform:scale(1) rotate(45deg)}90%{transform:scale(.2) rotate(90deg)}}
+/* opening shot */
+.intro .arena .beam{animation:beamOn .9s ease-out both,beam 7s ease-in-out .9s infinite alternate}
+@keyframes beamOn{from{opacity:0}to{opacity:1}}
+.intro .arena .ltr{animation:drop .62s cubic-bezier(.25,1.5,.5,1) both;animation-delay:calc(.55s + var(--i) * .12s)}
+@keyframes drop{0%{opacity:0;transform:translateY(-230px) scale(1.25)}55%{opacity:1}70%{transform:translateY(6px) scale(1,.9)}85%{transform:translateY(-3px) scale(1)}100%{opacity:1;transform:none}}
+.intro .arena .frontropes{animation:wob .6s ease-out 1.75s}
+@keyframes wob{25%{transform:translateY(3px)}50%{transform:translateY(-2px)}75%{transform:translateY(1px)}}
+.intro .arena .beltdrop{animation:beltIn 1.25s cubic-bezier(.2,.85,.25,1) 2s both}
+@keyframes beltIn{0%{opacity:0;transform:translateY(-190px) rotate(-6deg) scale(.85)}60%{opacity:1}75%{transform:translateY(5px) rotate(1deg) scale(1.02)}100%{opacity:1;transform:none}}
+.intro .arena .glint{animation-delay:3.3s!important}
+.intro .tag,.intro .weekbar,.intro .meta{animation:fadeUp .7s ease both}
+.intro .tag{animation-delay:3.3s}.intro .weekbar{animation-delay:3.5s}.intro .meta{animation-delay:3.6s}
+.intro .kicker{animation:fadeUp .7s ease .1s both}
+@keyframes fadeUp{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
+.arena .punchin{transform-box:fill-box;transform-origin:center;animation:jab 2.4s cubic-bezier(.3,.1,.3,1) infinite}
+@keyframes jab{0%,40%,100%{transform:translateX(0) scale(1) rotate(0)}48%{transform:translateX(-4px) scale(.95) rotate(-8deg)}56%{transform:translateX(7px) scale(1.3) rotate(4deg)}64%{transform:translateX(5px) scale(1.2)}76%{transform:translateX(0) scale(1)}}
+.arena .impact{opacity:0;animation:impact 2.4s linear infinite}
+@keyframes impact{0%,54%,72%,100%{opacity:0}57%{opacity:1}66%{opacity:.6}}
+.intro .arena .punchin,.intro .arena .impact{animation-delay:3.6s}
 .ringhero .tag{margin-top:10px}
 .hero .meta{display:flex;justify-content:space-between;margin-top:8px;font-size:12px;color:var(--heroMuted);font-weight:600;letter-spacing:.04em}
 
@@ -355,7 +394,7 @@ canvas.chart{width:100%;height:180px;display:block}
 <script>
 /* ================= CONFIG ================= */
 const COACH_WA = '201005707565';
-const CLIENT = 'Veronica';
+const CLIENT = 'Veronika';
 const STORE = 'veronica_fc_v1';
 const RV = 1; // ratings version: bump when the rating formulas change
 const SONG = {title:"Can't Be Touched", by:'Roy Jones Jr.', url:'https://www.youtube.com/results?search_query=Roy+Jones+Jr+Can%27t+Be+Touched'};
@@ -368,6 +407,11 @@ const SCOUT = {
 const T = {
   tabCamp:['Camp','Табір'],tabTrain:['Train','Тренування'],tabProgress:['Progress','Прогрес'],tabFuel:['Fuel','Харчування'],tabMore:['More','Ще'],
   kicker:['Fight Camp · 12 weeks','Тренувальний табір · 12 тижнів'],
+  arenaKicker:['Fight Camp with Coach Ibrahim','Тренувальний табір з тренером Ібрагімом'],
+  apron1:["I'm always in your corner,",'Я завжди у твоєму кутку'],
+  apron2:['supporting you until you achieve everything you dream of.','і підтримую тебе, доки ти не досягнеш усього, про що мрієш.'],
+  apronFight:['We fight this together','Ми в цьому бою разом'],
+  apron3:['— Coach Ibrahim','— тренер Ібрагім'],
   tagline:["Can't be touched.","Тебе не дістати."],
   rot:[['Stronger','Sharper','Faster','Untouchable'],['Сильніша','Гостріша','Швидша','Недосяжна']],
   week:['Week','Тиждень'],weekOf:['Week {w} of 12','Тиждень {w} з 12'],campDone:['Camp complete','Табір завершено'],
@@ -394,7 +438,7 @@ const T = {
   stPower:['POWER','СИЛА'],stShape:['SHAPE','ФОРМА'],stKick:['KICK','УДАР'],stEngine:['ENGINE','МОТОР'],stGrit:['GRIT','ХАРАКТЕР'],
   notRated:['Not rated yet','Ще без оцінки'],
   movesNext:['What moves your card next','Що підніме твою картку далі'],
-  coachLine:["I'm in your corner until the final bell.",'Я у твоєму кутку до фінального гонгу.'],
+  coachLine:['I see every rep you log. Keep going, champ.','Я бачу кожне твоє повторення. Вперед, чемпіонко.'],
   scout:['Coach’s scouting report','Розвідка від тренера'],
   recent:['Recent fights','Останні бої'],noFights:['No rounds yet. Your first W is waiting.','Ще немає раундів. Перша перемога чекає.'],
   sessions:['Sessions','Тренування'],
@@ -1156,9 +1200,9 @@ function renderCamp(){
   const meta=cw<1?`${t('start')}: ${fmtD(S.profile.start)}`:cw>12?t('campDone'):t('weekOf',{w:cw});
   const stats=[['power','stPower'],['shape','stShape'],['kick','stKick'],['engine','stEngine'],['grit','stGrit']].map(([k,l])=>`<div class="st" data-act="rating" data-k="${k}"><b>${R[k]==null?'–':R[k]}</b><span>${t(l)}</span><div class="bar"><i style="width:${R[k]||0}%"></i></div></div>`).join('');
   let html=`
-  <div class="hero ringhero">
-    <div class="kicker center">${t('kicker')}</div>
-    ${arenaSVG()}
+  <div class="hero ringhero ${UI.introDone||REDUCED?'':'intro'}">
+    <div class="kicker center">${t('arenaKicker')}</div>
+    ${arenaSVG(!UI.introDone&&!REDUCED)}
     <div class="tag center">${t('tagline')} <span class="rot" id="rotWord">${t('rot')[0]}.</span></div>
     <div class="weekbar">${wb}</div>
     <div class="meta"><span>${meta}</span><span>${t('record')} ${S.sessions.length}–0 · ${totalKOs()} KO</span></div>
@@ -1167,7 +1211,7 @@ function renderCamp(){
   html+=nextUpHTML();
   html+=`<div class="sec-title">${t('fighterCard')}</div>
   <div class="fcard"><div class="ring"></div>
-    <div class="row" style="align-items:flex-start"><div class="grow"><div class="tier">${t('tier'+tier)}</div><div class="disp" style="font-size:26px;font-weight:700;margin-top:2px">VERONICA</div><div class="tiny" style="color:#A9A3BA;margin-top:2px">${t('week')} ${Math.max(0,Math.min(cw,12))}/12 · ${S.sessions.length} W · ${totalKOs()} KO</div></div>
+    <div class="row" style="align-items:flex-start"><div class="grow"><div class="tier">${t('tier'+tier)}</div><div class="disp" style="font-size:26px;font-weight:700;margin-top:2px">VERONIKA</div><div class="tiny" style="color:#A9A3BA;margin-top:2px">${t('week')} ${Math.max(0,Math.min(cw,12))}/12 · ${S.sessions.length} W · ${totalKOs()} KO</div></div>
     <div class="ovr center">${R.ovr==null?'–':R.ovr}<small>OVR</small></div></div>
     <div class="stats">${stats}</div>
     <div class="type" id="typeLine" aria-live="polite"></div>
@@ -1184,44 +1228,118 @@ function renderCamp(){
   const rec=sessionsSorted().reverse().slice(0,5);
   html+=`<div class="sec-title">${t('recent')}</div><div class="card">${rec.length?rec.map(s=>`<div class="list-row"><div class="pill ${s.kind==='ring'?'gold':'acc'}" style="min-width:42px;justify-content:center">${s.kind==='ring'?'🥊':s.kind==='fn'||s.kind==='wi'?'🏆':s.kind}</div><div class="grow"><div style="font-weight:700">${sessTitle(s)}</div><div class="tiny muted">${fmtD(s.d)}${s.dur?' · '+s.dur+' '+t('min'):''}${s.kind!=='ring'&&s.ex?' · '+hardSets(s)+' '+t('setsW'):''}</div></div><b class="disp" style="color:var(--green)">W</b>${s.prs?`<span class="pill gold">${s.prs} KO</span>`:''}</div>`).join(''):`<div class="muted small">${t('noFights')}</div>`}</div>`;
   el.innerHTML=html;hydrateAnims(el);
+  if(!UI.introDone){UI.introDone=true;try{document.fonts.ready.then(relayoutName)}catch(e){}}else relayoutName();
   startTypewriter(tier);startRot();
 }
 
-function arenaSVG(){
-  const BL=[74,90],BR=[286,90],FL=[16,192],FR=[344,192];const bh=42,fh=48;const hs=[.3,.6,.9];
+const RING_NAME='VERONIKA';
+function nameLayout(){
+  let ws;try{const c=document.createElement('canvas').getContext('2d');c.font='700 64px Oswald, Impact, sans-serif';ws=[...RING_NAME].map(ch=>c.measureText(ch).width)}catch(e){ws=[...RING_NAME].map(()=>32)}
+  const gap=3;const tot=ws.reduce((a,b)=>a+b,0)+gap*(ws.length-1);const sc=Math.min(1.15,262/tot);const fs=64*sc;let x=180-tot*sc/2;
+  const xs=ws.map(w=>{const cx=x+w*sc/2;x+=(w+gap)*sc;return +cx.toFixed(1)});return {fs:+fs.toFixed(1),xs};
+}
+function measureW(str,font,ls){try{const c=document.createElement('canvas').getContext('2d');c.font=font+', Impact, sans-serif';return c.measureText(str).width+ls*str.length}catch(e){return str.length*6}}
+function fitLen(str,font,ls,max){const w=measureW(str,font,ls);return w>max?` textLength="${max}" lengthAdjust="spacingAndGlyphs"`:''}
+function relayoutName(){const L_=nameLayout();$$('.arena .ltr text').forEach((el,i)=>{el.setAttribute('x',L_.xs[i]);el.setAttribute('font-size',L_.fs)})}
+function arenaSVG(intro){
+  // ring geometry (high-angle broadcast view)
+  const BL=[74,166],BR=[286,166],FL=[16,266],FR=[344,266];const bh=42,fh=48;const hs=[.3,.6,.9];
   const by=k=>BL[1]-bh*hs[k],fy=k=>FL[1]-fh*hs[k];
-  // crowd (deterministic)
-  let crowd='';let seed=7;const rnd=()=>{seed=(seed*9301+49297)%233280;return seed/233280};
-  for(let row=0;row<3;row++){for(let x=-4;x<368;x+=10+row*2){const y=46+row*12+rnd()*5;const r=4.2+row*.9;crowd+=`<circle cx="${(x+rnd()*5).toFixed(1)}" cy="${y.toFixed(1)}" r="${r.toFixed(1)}"/><rect x="${(x-r*1.3).toFixed(1)}" y="${(y+r*.8).toFixed(1)}" width="${(r*2.8).toFixed(1)}" height="20" rx="${r.toFixed(1)}"/>`}}
-  let flashes='';[[34,50],[112,44],[198,52],[262,46],[330,56],[150,60],[300,48],[60,62]].forEach(([x,y],i)=>flashes+=`<circle class="flashdot" cx="${x}" cy="${y}" r="2.2" style="animation-delay:${(i*1.37)%6}s"/>`);
-  const rope=(x1,y1,x2,y2,sag,k,front)=>{const col=k===1?'#F4F1FA':'url(#gRope)';return `<path d="M${x1},${y1} Q${(x1+x2)/2},${(y1+y2)/2+sag} ${x2},${y2}" stroke="#05040a" stroke-width="${front?5.4:3.6}" fill="none" stroke-linecap="round" opacity=".55"/><path d="M${x1},${y1} Q${(x1+x2)/2},${(y1+y2)/2+sag} ${x2},${y2}" stroke="${col}" stroke-width="${front?3.2:2.1}" fill="none" stroke-linecap="round"/>`};
+  let seed=11;const rnd=()=>{seed=(seed*9301+49297)%233280;return seed/233280};
+  // lighting truss + lamps + beams
+  const lamps=[30,92,152,208,268,330];let truss=`<rect x="0" y="4" width="360" height="7" fill="#1b1b1f"/>`;for(let x=0;x<360;x+=12)truss+=`<path d="M${x},4 L${x+6},11 L${x+12},4" stroke="#33333a" stroke-width="1" fill="none"/>`;
+  let beams='',lampEls='';const aims={30:110,92:150,152:175,208:185,268:210,330:250};
+  lamps.forEach((x,i)=>{const ax=aims[x];beams+=`<polygon class="beam bm${i%3}" points="${x-4},14 ${x+4},14 ${ax+70},262 ${ax-70},262" fill="url(#gBeam)"/>`;
+    lampEls+=`<rect x="${x-6}" y="9" width="12" height="7" rx="2" fill="#2a2a30"/><ellipse cx="${x}" cy="16.5" rx="5" ry="2" fill="#fff"/><ellipse class="lampglow" cx="${x}" cy="17" rx="10" ry="4" fill="#fff" opacity=".35" style="animation-delay:${i*.4}s"/>`});
+  // tier lights
+  let tier='';for(let x=4;x<360;x+=8){tier+=`<circle class="tierdot" cx="${x}" cy="${52+rnd()*8}" r=".9" fill="${rnd()>.7?'#FF5560':'#fff'}" style="animation-delay:${(rnd()*4).toFixed(2)}s"/>`}
+  // crowd: 3 rows of clear silhouettes, some filming with phones
+  let crowd='',phones='';
+  [[72,5.4,'#3a2f35',15],[90,6.4,'#463940',16.5],[110,7.6,'#54444c',18.5]].forEach(([yb,r,col,step],row)=>{
+    for(let x=-8+row*6;x<372;x+=step){const cx=x+rnd()*4,cy=yb+rnd()*3;const film=row>0&&rnd()<.42&&Math.abs(cx-180)>58;
+      const sh=`M${(cx-r*1.75).toFixed(1)},${(cy+r*3.6).toFixed(1)} Q${(cx-r*1.7).toFixed(1)},${(cy+r*1.15).toFixed(1)} ${cx.toFixed(1)},${(cy+r*1.1).toFixed(1)} Q${(cx+r*1.7).toFixed(1)},${(cy+r*1.15).toFixed(1)} ${(cx+r*1.75).toFixed(1)},${(cy+r*3.6).toFixed(1)} Z`;
+      crowd+=`<path d="${sh}" fill="${col}"/><circle cx="${cx.toFixed(1)}" cy="${cy.toFixed(1)}" r="${r}" fill="${col}"/>`;
+      crowd+=`<path d="M${(cx-r*.8).toFixed(1)},${(cy-r*.6).toFixed(1)} A${r},${r} 0 0 1 ${(cx+r*.8).toFixed(1)},${(cy-r*.6).toFixed(1)}" stroke="#ffb3b3" stroke-opacity=".45" stroke-width="1" fill="none"/>`;
+      if(film){const sd=rnd()>.5?1:-1;const sx=cx+sd*r*1.3,sy=cy+r*1.6,px=cx+sd*r*1.6,py=cy-r*2.1;
+        phones+=`<line x1="${sx.toFixed(1)}" y1="${sy.toFixed(1)}" x2="${px.toFixed(1)}" y2="${(py+3).toFixed(1)}" stroke="${col}" stroke-width="${(r*.7).toFixed(1)}" stroke-linecap="round"/><rect x="${(px-2.4).toFixed(1)}" y="${(py-4).toFixed(1)}" width="4.8" height="7.4" rx="1" fill="#15151a" stroke="#6b6b75" stroke-width=".5"/><circle cx="${(px-1).toFixed(1)}" cy="${(py-2.4).toFixed(1)}" r=".7" fill="#9ad"/><circle class="pflash" cx="${(px-1).toFixed(1)}" cy="${(py-2.4).toFixed(1)}" r="6" fill="url(#gFlash)" style="animation-delay:${(rnd()*6).toFixed(2)}s"/>`}
+    }});
+  // burst of flashes when the belt lands (intro only)
+  let burst='';if(intro){for(let i=0;i<16;i++){const x=10+rnd()*340,y=62+rnd()*60;burst+=`<circle class="bflash" cx="${x.toFixed(1)}" cy="${y.toFixed(1)}" r="${(4+rnd()*4).toFixed(1)}" fill="url(#gFlash)" style="animation-delay:${(3.05+rnd()*1.1).toFixed(2)}s"/>`}}
+  // ropes
+  const rope=(x1,y1,x2,y2,sag,k,front)=>{const col=k===1?'#F4F4F6':'url(#gRope)';const d=`M${x1},${y1} Q${(x1+x2)/2},${(y1+y2)/2+sag} ${x2},${y2}`;return `<path d="${d}" stroke="#05040a" stroke-width="${front?5.4:3.6}" fill="none" stroke-linecap="round" opacity=".55"/><path d="${d}" stroke="${col}" stroke-width="${front?3.2:2.1}" fill="none" stroke-linecap="round"/>`};
   let back='',sides='',front='';
   for(let k=0;k<3;k++){back+=rope(BL[0],by(k),BR[0],by(k),3,k,0);sides+=rope(BL[0],by(k),FL[0],fy(k),1,k,0)+rope(BR[0],by(k),FR[0],fy(k),1,k,0);front+=rope(FL[0],fy(k),FR[0],fy(k),7,k,1)}
   const post=(x,y0,h,w,pad)=>{let s=`<rect x="${x-w/2}" y="${y0-h-6}" width="${w}" height="${h+6}" rx="${w/2}" fill="url(#gPost)"/>`;for(let k=0;k<3;k++){const y=y0-h*hs[k];s+=`<rect x="${x-w/2-1.5}" y="${y-(w*.9)}" width="${w+3}" height="${w*1.8}" rx="2" fill="${pad}"/>`}return s};
-  return `<svg class="arena" viewBox="0 0 360 250" role="img" aria-label="Boxing ring: VERONICA">
+  // name letters
+  const NL=nameLayout();const letters=[...RING_NAME].map((ch,i)=>`<g class="ltr" style="--i:${i}"><text x="${NL.xs[i]}" y="222" text-anchor="middle" font-family="Oswald,Impact,sans-serif" font-weight="700" font-size="${NL.fs}" fill="url(#gName)">${ch}</text></g>`).join('');
+  // belt
+  const dia=(x,y,s=2.4)=>`<path d="M${x},${y-s} L${x+s*.8},${y} L${x},${y+s} L${x-s*.8},${y} Z" fill="url(#gDia)" stroke="#fff" stroke-width=".3"/>`;
+  let studs='';for(let x=76;x<=284;x+=8){if(Math.abs(x-180)<50)continue;if(Math.abs(x-118)<15||Math.abs(x-242)<15)continue;studs+=`<circle cx="${x}" cy="110" r="1.9" fill="url(#gGold)"/><circle cx="${x}" cy="124" r="1.9" fill="url(#gGold)"/>${dia(x,117,2.1)}`}
+  let rim='';for(let i=0;i<18;i++){const a=i/18*Math.PI*2;rim+=dia(+(180+41*Math.cos(a)).toFixed(1),+(117+33*Math.sin(a)).toFixed(1),2.3)}
+  const side=(x)=>`<rect x="${x-13}" y="101" width="26" height="32" rx="6" fill="url(#gGold)" stroke="#7A5410" stroke-width="1"/><rect x="${x-9}" y="105" width="18" height="24" rx="4" fill="none" stroke="#7A5410" stroke-width=".7" opacity=".7"/><path d="M${x},${109} L${x+5},${117} L${x},${125} L${x-5},${117} Z" fill="url(#gRuby)" stroke="#fff" stroke-width=".4"/>`;
+  const star=(x,y,s,d)=>`<path class="glint" style="animation-delay:${d}s" d="M${x},${y-s} Q${x+s*.18},${y-s*.18} ${x+s},${y} Q${x+s*.18},${y+s*.18} ${x},${y+s} Q${x-s*.18},${y+s*.18} ${x-s},${y} Q${x-s*.18},${y-s*.18} ${x},${y-s} Z" fill="#fff"/>`;
+  const belt=`<g class="beltdrop"><g class="beltfloat">
+    <ellipse cx="180" cy="160" rx="70" ry="5" fill="#000" opacity=".35" class="beltshadow"/>
+    <rect x="64" y="104" width="232" height="26" rx="9" fill="url(#gLeather)" stroke="#000" stroke-width="1"/>
+    <rect x="68" y="107" width="224" height="20" rx="7" fill="none" stroke="#C9A13B" stroke-width=".6" stroke-dasharray="2 1.6" opacity=".8"/>
+    ${studs}${side(118)}${side(242)}
+    <ellipse cx="180" cy="117" rx="49" ry="40" fill="url(#gGold)" stroke="#6E4B0C" stroke-width="1.6"/>
+    <ellipse cx="180" cy="117" rx="45" ry="36.5" fill="none" stroke="#FFF1B8" stroke-width=".8" opacity=".8"/>
+    ${rim}
+    <ellipse cx="180" cy="117" rx="34" ry="27" fill="url(#gGoldIn)" stroke="#6E4B0C" stroke-width="1"/>
+    <path d="M168,96 L172,101 L176,95 L180,101 L184,95 L188,101 L192,96 L190,104 L170,104 Z" fill="url(#gGold)" stroke="#6E4B0C" stroke-width=".7"/>
+    ${dia(176,99,1.4)}${dia(184,99,1.4)}
+    <path d="M180,104 L190,113 L180,126 L170,113 Z" fill="url(#gDia)" stroke="#fff" stroke-width=".6"/>
+    <path d="M170,113 L190,113 M180,104 L176,113 L180,126 L184,113 Z" stroke="#9fb6d8" stroke-width=".4" fill="none"/>
+    <text x="180" y="135" text-anchor="middle" font-family="Oswald,sans-serif" font-weight="700" font-size="7.2" letter-spacing="1.6" fill="#5A3C08">CHAMPION</text>
+    <text x="180" y="141.5" text-anchor="middle" font-family="Oswald,sans-serif" font-weight="600" font-size="4.6" letter-spacing="1.2" fill="#5A3C08">FIGHT CAMP 2026</text>
+    <g clip-path="url(#cPlate)"><rect class="shine" x="118" y="70" width="16" height="96" fill="url(#gShine)" transform="skewX(-18)"/></g>
+    ${star(150,96,5,0)}${star(212,104,4,.9)}${star(180,104,6.5,1.7)}${star(118,108,3.6,2.4)}${star(244,124,3.6,.5)}${star(204,141,3.8,3.1)}${star(88,117,3,1.3)}${star(272,112,3,2.8)}
+  </g></g>`;
+  const ap=[t('apron1'),t('apron2'),t('apronFight')];
+  const l3w=measureW(ap[2],'700 13px Oswald',1.6);const l3x=+(180-12).toFixed(1);const fx=+(l3x+l3w/2+9).toFixed(1);
+  return `<svg class="arena" viewBox="0 0 360 350" role="img" aria-label="Boxing ring: ${RING_NAME}">
   <defs>
-   <radialGradient id="gCanvas" cx="50%" cy="55%" r="60%"><stop offset="0" stop-color="#3a2470"/><stop offset=".55" stop-color="#1b1430"/><stop offset="1" stop-color="#0d0b14"/></radialGradient>
-   <linearGradient id="gBeam" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#E9DDFF" stop-opacity=".26"/><stop offset="1" stop-color="#E9DDFF" stop-opacity="0"/></linearGradient>
-   <linearGradient id="gApron" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#1d1929"/><stop offset="1" stop-color="#09080d"/></linearGradient>
+   <radialGradient id="gCanvas" cx="50%" cy="55%" r="60%"><stop offset="0" stop-color="#34343a"/><stop offset=".55" stop-color="#18181b"/><stop offset="1" stop-color="#070708"/></radialGradient>
+   <linearGradient id="gBeam" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#FFFFFF" stop-opacity=".15"/><stop offset="1" stop-color="#FFFFFF" stop-opacity="0"/></linearGradient>
+   <linearGradient id="gApron" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#151517"/><stop offset="1" stop-color="#050505"/></linearGradient>
    <linearGradient id="gPost" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#6d6880"/><stop offset=".45" stop-color="#e6e3ee"/><stop offset="1" stop-color="#4a4658"/></linearGradient>
-   <linearGradient id="gRope" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#C7A8FF"/><stop offset="1" stop-color="#7C4DFF"/></linearGradient>
-   <linearGradient id="gName" x1="0" y1="0" x2="0" y2="1"><stop offset=".25" stop-color="#ffffff"/><stop offset="1" stop-color="#CDB8FF"/></linearGradient>
-   <filter id="fGlow" x="-20%" y="-40%" width="140%" height="180%"><feGaussianBlur stdDeviation="5" result="b"/><feFlood flood-color="#9D6BFF" flood-opacity=".75"/><feComposite in2="b" operator="in"/><feMerge><feMergeNode/><feMergeNode in="SourceGraphic"/></feMerge></filter>
+   <linearGradient id="gRope" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#FF4B4B"/><stop offset="1" stop-color="#B30F1C"/></linearGradient>
+   <linearGradient id="gName" x1="0" y1="0" x2="0" y2="1"><stop offset=".3" stop-color="#ffffff"/><stop offset="1" stop-color="#D9D9DE"/></linearGradient>
+   <linearGradient id="gGold" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#FFF4C2"/><stop offset=".3" stop-color="#F3CD55"/><stop offset=".65" stop-color="#C08D17"/><stop offset="1" stop-color="#7A5410"/></linearGradient>
+   <linearGradient id="gGoldIn" x1="0" y1="1" x2="1" y2="0"><stop offset="0" stop-color="#9C6E12"/><stop offset=".5" stop-color="#E9BE45"/><stop offset="1" stop-color="#FFE9A0"/></linearGradient>
+   <linearGradient id="gLeather" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#2a2a2e"/><stop offset=".5" stop-color="#0e0e10"/><stop offset="1" stop-color="#1c1c20"/></linearGradient>
+   <linearGradient id="gDia" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#ffffff"/><stop offset=".5" stop-color="#d7e9ff"/><stop offset="1" stop-color="#8fb3e6"/></linearGradient>
+   <linearGradient id="gRuby" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#FF8A8F"/><stop offset=".5" stop-color="#E01E2B"/><stop offset="1" stop-color="#7A0A12"/></linearGradient>
+   <linearGradient id="gShine" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#fff" stop-opacity="0"/><stop offset=".5" stop-color="#fff" stop-opacity=".85"/><stop offset="1" stop-color="#fff" stop-opacity="0"/></linearGradient>
+   <radialGradient id="gFlash"><stop offset="0" stop-color="#fff"/><stop offset=".35" stop-color="#fff" stop-opacity=".8"/><stop offset="1" stop-color="#fff" stop-opacity="0"/></radialGradient>
+   <radialGradient id="gHaze" cx="50%" cy="50%" r="50%"><stop offset="0" stop-color="#E01E2B" stop-opacity=".35"/><stop offset="1" stop-color="#E01E2B" stop-opacity="0"/></radialGradient>
+   <clipPath id="cPlate"><ellipse cx="180" cy="117" rx="49" ry="40"/></clipPath>
+   <filter id="fGlow" x="-20%" y="-40%" width="140%" height="180%"><feGaussianBlur stdDeviation="5" result="b"/><feFlood flood-color="#E01E2B" flood-opacity=".7"/><feComposite in2="b" operator="in"/><feMerge><feMergeNode/><feMergeNode in="SourceGraphic"/></feMerge></filter>
+   <filter id="fPhone" x="-100%" y="-100%" width="300%" height="300%"><feGaussianBlur stdDeviation="1.4" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
   </defs>
-  <g fill="#1a1724" opacity=".95">${crowd}</g>${flashes}
-  <polygon class="beam" points="158,-6 202,-6 318,186 42,186" fill="url(#gBeam)"/>
-  ${post(BL[0],BL[1],bh,5,'#3b3550')}${post(BR[0],BR[1],bh,5,'#3b3550')}
+  <ellipse cx="180" cy="190" rx="220" ry="120" fill="url(#gHaze)"/>
+  ${tier}
+  <g>${crowd}</g>${phones}${burst}
+  ${beams}${truss}${lampEls}
+  ${post(BL[0],BL[1],bh,5,'#F4F4F6')}${post(BR[0],BR[1],bh,5,'#1d1d20')}
   ${back}
-  <polygon points="${BL} ${BR} ${FR} ${FL}" fill="url(#gCanvas)" stroke="#4a3d6e" stroke-width="1.2"/>
-  <ellipse cx="180" cy="150" rx="122" ry="24" fill="none" stroke="#9D6BFF" stroke-opacity=".28" stroke-width="1.4"/>
-  <ellipse cx="180" cy="151" rx="100" ry="8" fill="#000" opacity=".45"/>
+  <polygon points="${BL} ${BR} ${FR} ${FL}" fill="url(#gCanvas)" stroke="#3a3a40" stroke-width="1.2"/>
+  <ellipse cx="180" cy="224" rx="122" ry="24" fill="none" stroke="#E01E2B" stroke-opacity=".35" stroke-width="1.4"/>
+  <ellipse cx="180" cy="225" rx="100" ry="8" fill="#000" opacity=".45"/>
   ${sides}
-  <text x="180" y="146" text-anchor="middle" font-family="Oswald,Impact,sans-serif" font-weight="700" font-size="64" textLength="256" lengthAdjust="spacingAndGlyphs" fill="url(#gName)" filter="url(#fGlow)">VERONICA</text>
-  ${front}
-  ${post(FL[0],FL[1],fh,8,'#9D6BFF')}${post(FR[0],FR[1],fh,8,'#F4F1FA')}
-  <polygon points="12,190 348,190 352,240 8,240" fill="url(#gApron)"/>
-  <line x1="12" y1="191" x2="348" y2="191" stroke="#9D6BFF" stroke-width="2.2"/>
-  <text x="180" y="221" text-anchor="middle" font-family="Oswald,sans-serif" font-weight="600" font-size="12.5" letter-spacing="5" fill="#CDB8FF">FIGHT CAMP · COACH IBRAHIM</text>
+  ${belt}
+  <g filter="url(#fGlow)">${letters}</g>
+  <g class="frontropes">${front}</g>
+  ${post(FL[0],FL[1],fh,8,'#E01E2B')}${post(FR[0],FR[1],fh,8,'#F4F4F6')}
+  <polygon points="12,266 348,266 352,350 8,350" fill="url(#gApron)"/>
+  <line x1="12" y1="267" x2="348" y2="267" stroke="#E01E2B" stroke-width="2.4"/>
+  <text x="180" y="288" text-anchor="middle" font-family="Oswald,sans-serif" font-weight="700" font-size="13" letter-spacing="1.2" fill="#FFFFFF"${fitLen(ap[0],'700 13px Oswald',1.2,320)}>${esc(ap[0])}</text>
+  <text x="180" y="304" text-anchor="middle" font-family="Oswald,sans-serif" font-weight="500" font-size="9.6" letter-spacing=".8" fill="#D2D2D8"${fitLen(ap[1],'500 9.6px Oswald',.8,322)}>${esc(ap[1])}</text>
+  <text x="${l3x}" y="324" text-anchor="middle" font-family="Oswald,sans-serif" font-weight="700" font-size="13" letter-spacing="1.6" fill="#FF3B47">${esc(ap[2])}</text>
+  <g class="punch" transform="translate(${fx},319)"><g class="punchin"><text x="0" y="0" text-anchor="middle" dominant-baseline="central" font-size="15">👊</text></g>
+   <g class="impact" stroke="#FFD34D" stroke-width="1.4" stroke-linecap="round"><line x1="12" y1="-6" x2="17" y2="-9"/><line x1="13" y1="0" x2="19" y2="0"/><line x1="12" y1="6" x2="17" y2="9"/></g></g>
+  <text x="180" y="341" text-anchor="middle" font-family="Oswald,sans-serif" font-weight="600" font-size="7.6" letter-spacing="2.4" fill="#9a9aa2">${esc(t('apron3'))}</text>
   </svg>`;
 }
 function sessTitle(s){if(s.kind==='ring')return `${t('ringDay')} · ${s.ring&&s.ring.type==='kick'?t('kickT'):t('boxingT')}`;if(s.kind==='fn')return t('fnTitle');if(s.kind==='wi')return t('weighIn');return `${t(s.kind==='A'?'roundA':'roundB')} · ${t(ROUNDS[s.kind].name)} · ${s.mode}′`}
@@ -1510,7 +1628,7 @@ async function makePoster(){
   const g=x.createRadialGradient(540,420,40,540,420,700);g.addColorStop(0,'rgba(157,107,255,.55)');g.addColorStop(1,'rgba(157,107,255,0)');x.fillStyle=g;x.fillRect(0,0,1080,1350);
   x.strokeStyle='rgba(255,255,255,.035)';x.lineWidth=3;for(let i=-1400;i<1400;i+=26){x.beginPath();x.moveTo(i,0);x.lineTo(i+700,1350);x.stroke()}
   x.textAlign='center';x.fillStyle='#A9A3BA';x.font='600 34px Oswald';x.fillText((L_ua()?'ТРЕНУВАЛЬНИЙ ТАБІР':'FIGHT CAMP')+' · 2026',540,120);
-  x.fillStyle='#ffffff';let fs=250;x.font=`700 ${fs}px Oswald`;while(x.measureText('VERONICA').width>980){fs-=6;x.font=`700 ${fs}px Oswald`}x.fillText('VERONICA',540,360);
+  x.fillStyle='#ffffff';let fs=250;x.font=`700 ${fs}px Oswald`;while(x.measureText('VERONIKA').width>980){fs-=6;x.font=`700 ${fs}px Oswald`}x.fillText('VERONIKA',540,360);
   x.fillStyle='#B48CFF';x.font='600 64px Oswald';x.fillText(t('tagline').toUpperCase(),540,450);
   // record
   x.fillStyle='rgba(255,255,255,.06)';rr(x,90,520,900,200,28);x.fill();
@@ -1521,8 +1639,8 @@ async function makePoster(){
   x.textAlign='left';st.forEach(([l,k],i)=>{const y=800+i*70;x.fillStyle='#CDB8FF';x.font='600 30px Oswald';x.fillText(t(l),120,y);const v=R[k];x.fillStyle='rgba(255,255,255,.1)';rr(x,340,y-24,520,22,11);x.fill();if(v){x.fillStyle='#9D6BFF';rr(x,340,y-24,520*v/100,22,11);x.fill()}x.fillStyle='#fff';x.font='700 34px Oswald';x.textAlign='right';x.fillText(v==null?'–':v,960,y);x.textAlign='left'});
   x.textAlign='center';x.fillStyle='#fff';x.font='700 60px Oswald';x.fillText('OVR '+(R.ovr==null?'–':R.ovr)+' · '+t('tier'+tierOf(R.ovr)).toUpperCase(),540,1200);
   x.fillStyle='#A9A3BA';x.font='600 28px Inter';x.fillText('COACH IBRAHIM  ·  🎵 '+SONG.title.toUpperCase(),540,1275);
-  const url=c.toDataURL('image/png');const box=$('#posterBox');if(box)box.innerHTML=`<img class="poster-prev mt12" src="${url}" alt="${esc(t('poster'))}"><div class="btns mt8"><a class="btn sm" download="veronica-fight-poster.png" href="${url}">${t('savePoster')}</a><button class="btn sm" id="posterShare">${t('share')}</button></div>`;
-  const sh=$('#posterShare');if(sh)sh.onclick=async()=>{try{const blob=await (await fetch(url)).blob();const file=new File([blob],'veronica-fight-poster.png',{type:'image/png'});if(navigator.canShare&&navigator.canShare({files:[file]}))await navigator.share({files:[file],title:'Fight Camp'});else toast(L_ua()?'Збережи зображення й поділись ним.':'Save the image, then share it.')}catch(e){}};
+  const url=c.toDataURL('image/png');const box=$('#posterBox');if(box)box.innerHTML=`<img class="poster-prev mt12" src="${url}" alt="${esc(t('poster'))}"><div class="btns mt8"><a class="btn sm" download="veronika-fight-poster.png" href="${url}">${t('savePoster')}</a><button class="btn sm" id="posterShare">${t('share')}</button></div>`;
+  const sh=$('#posterShare');if(sh)sh.onclick=async()=>{try{const blob=await (await fetch(url)).blob();const file=new File([blob],'veronika-fight-poster.png',{type:'image/png'});if(navigator.canShare&&navigator.canShare({files:[file]}))await navigator.share({files:[file],title:'Fight Camp'});else toast(L_ua()?'Збережи зображення й поділись ним.':'Save the image, then share it.')}catch(e){}};
 }
 function rr(x,a,b,w,h,r){x.beginPath();roundRect(x,a,b,w,h,r)}
 /* ================= CHECK-IN & START ================= */
@@ -1772,7 +1890,7 @@ function fightFlow(kind){
   const host=$('#overlayHost');const d=document.createElement('div');d.className='full';const title=kind==='wi'?t('weighIn'):t('fnTitle');const tw=2*S.profile.maxDb;
   d.innerHTML=`<button class="btn sm x" style="background:rgba(255,255,255,.08);color:#fff;border-color:rgba(255,255,255,.15)" data-x>${t('close')}</button>
    <div class="kicker" style="font-family:Oswald;letter-spacing:.35em;color:#CDB8FF;font-size:13px">${title.toUpperCase()}</div>
-   <div class="huge" style="background:linear-gradient(180deg,#fff 30%,#CDB8FF);-webkit-background-clip:text;background-clip:text;color:transparent">VERONICA</div>
+   <div class="huge" style="background:linear-gradient(180deg,#fff 30%,#CDB8FF);-webkit-background-clip:text;background-clip:text;color:transparent">VERONIKA</div>
    <div class="disp" style="font-size:20px;color:#A57BFF;margin-top:6px">${t('tagline')}</div>
    <a class="btn" style="margin-top:22px;background:rgba(255,255,255,.08);color:#fff;border-color:rgba(255,255,255,.15)" href="${SONG.url}" target="_blank" rel="noopener">🎵 ${SONG.title}</a>
    <button class="btn pri" style="margin-top:12px;min-width:240px" data-enter>🔔 ${t('enterRing')}</button>`;
